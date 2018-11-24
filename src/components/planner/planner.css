@@ -1,0 +1,77 @@
+.Plannercont{
+    display: flex;
+    justify-content: start;
+}
+
+
+.timeLabel{
+    background-color: var(--primary);
+    color: var(--light);
+    height:32px;
+    width: 100%;
+    padding:8px;
+    font-size: 80%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.dayLabel{
+    width:200px;
+}
+
+.timeDisplay ul{
+    list-style-type:none;
+    padding:0%;
+    height: 700px;
+    margin:0px;
+}
+
+.timeDisplay ul li{
+    height:calc(100%/24);
+    align-content: center;
+}
+
+/*.daySchedule::before{
+    content: "";
+    width: 100%;
+    height:calc(700px/48);
+    background-color: #fff;
+    display: block;
+}*/
+
+.daySchedule{
+    width:200px;
+    list-style-type:none;
+    padding:0%;
+    height: 700px;
+    margin:0%;
+    position: relative;
+    align-content: center;
+    
+    background: linear-gradient(
+        to bottom,
+        var(--primary),
+        var(--primary) 3px,
+        #fff 0,
+        #fff
+    );
+    background-size: 100% calc(100% / 24);
+    position: absolute;
+}
+
+.activityBlock{
+    background-color: var(--secondary);
+    color: var(--light);
+    border-radius: 10px;
+    padding: 1% 10%;
+    width:90%;
+    left:5%;
+    position: absolute;
+    font-size: 80%;
+    box-shadow: rgb(50,50,50) 5px 5px;
+}
+
+.arrow{
+    font-size: 150%;
+}
