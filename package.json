@@ -38,8 +38,7 @@
     "reactstrap": "^6.4.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.18.4"
+    "concurrently": "^3.5.0"
   },
   "proxy": "http://localhost:5000/"
 }
