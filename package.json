@@ -23,22 +23,32 @@
     "ajv": "^6.5.5",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "chart.js": "^1.1.1",
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "mongoose": "^5.2.15",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
-    "react": "^16.5.2",
+    "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
+    "react-chartjs": "^1.2.0",
+    "react-chartjs-2": "^2.7.4",
     "react-datetime-picker": "^1.6.1",
-    "react-dom": "^16.5.2",
+    "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.1.1",
     "reactstrap": "^6.4.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.18.9"
   },
-  "proxy": "http://localhost:5000/"
+  "proxy": "http://localhost:5000/",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

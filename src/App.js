@@ -6,6 +6,7 @@ import Login from './components/login'
 import Day from './components/day'
 import Newevent from './components/newevent'
 import Useractivities from  './components/useractivities'
+import Reports from './components/reports'
 import { Route } from "react-router-dom";
 
 
@@ -53,6 +54,7 @@ class App extends Component {
     <Route path="/login" render={() =><Login loggedIn={this.state.loggedIn} />} />
     <Route path="/day" render={() =><Day />} />
     <Route path="/myavtivities" render={()=><Useractivities />} />
+    <Route path="/reports" render={()=><Reports />} />
       </div>
     );
   }

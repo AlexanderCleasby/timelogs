@@ -49,6 +49,11 @@ export default class useractivities extends React.Component{
                                 <Link  className="text-light" to="/myavtivities">My Activities</Link>
                             </NavLink>
                         </NavItem>
+                        <NavItem >
+                            <NavLink>
+                                <Link  className="text-light" to="/reports">Reports</Link>
+                            </NavLink>
+                        </NavItem>
                     </Nav>
                 )
         }
