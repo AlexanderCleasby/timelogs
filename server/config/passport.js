@@ -20,7 +20,8 @@ passport.use(
         //options for google Strategy
         callbackURL:'/auth/google/callback',
         clientID:keys.google.clientID,
-        clientSecret:keys.google.clientSecret
+        clientSecret:keys.google.clientSecret,
+        userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
     }, (accessToken,refreshToken,profile,done)=>{
         //passport callback function
         console.log(profile)

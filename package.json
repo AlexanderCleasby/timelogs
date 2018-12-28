@@ -29,7 +29,7 @@
     "express": "^4.16.3",
     "mongoose": "^5.2.15",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0",
+    "passport-google-oauth20": "github:MarshallOfSound/passport-google-oauth2#patch-1",
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
     "react-chartjs": "^1.2.0",
