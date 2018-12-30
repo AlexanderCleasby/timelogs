@@ -5,6 +5,7 @@ import Navigation from './components/navigation';
 import Login from './components/login'
 import Day from './components/day'
 import Newevent from './components/newevent'
+import Home from './components/home'
 import Useractivities from  './components/useractivities'
 import Reports from './components/reports'
 import { Route } from "react-router-dom";
@@ -50,7 +51,7 @@ class App extends Component {
         </header>
         {(()=>{if(!(this.state.loggedIn)){
            return <Login />}})()}
-      
+    <Route path="/" render={Home} />
     <Route path="/login" render={() =><Login loggedIn={this.state.loggedIn} />} />
     <Route path="/day" render={() =><Day />} />
     <Route path="/myavtivities" render={()=><Useractivities />} />
