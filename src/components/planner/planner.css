@@ -20,6 +20,11 @@
     width:200px;
 }
 
+
+.timeDisplay{
+    width:41.797;
+}
+
 .timeDisplay ul{
     list-style-type:none;
     padding:0%;
