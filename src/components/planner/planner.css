@@ -37,13 +37,6 @@
     align-content: center;
 }
 
-/*.daySchedule::before{
-    content: "";
-    width: 100%;
-    height:calc(700px/48);
-    background-color: #fff;
-    display: block;
-}*/
 
 .daySchedule{
     width:200px;
