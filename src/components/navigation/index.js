@@ -9,10 +9,8 @@ import {
     Nav,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap';
+} from 'reactstrap';
+import icon from './../../assets/icon.png'
 
 
 export default class useractivities extends React.Component{
@@ -32,6 +30,7 @@ export default class useractivities extends React.Component{
     return (
     <div>
     <Navbar color="primary"  dark expand="md">
+    <img src={icon}></img>
     <NavbarBrand className="text-light" href='/' >Time Logs</NavbarBrand>
     <NavbarToggler onClick={this.toggle} />
     <Collapse isOpen={this.state.isOpen} navbar>
