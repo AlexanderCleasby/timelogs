@@ -51,7 +51,7 @@ class App extends Component {
         </header>
         {(()=>{if(!(this.state.loggedIn)){
            return <Login />}})()}
-    <Route path="/" render={Home} />
+    <Route exact path="/" render={Home} />
     <Route path="/login" render={() =><Login loggedIn={this.state.loggedIn} />} />
     <Route path="/day" render={() =><Day />} />
     <Route path="/myavtivities" render={()=><Useractivities />} />
