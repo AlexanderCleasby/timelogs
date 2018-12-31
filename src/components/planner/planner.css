@@ -51,8 +51,10 @@
     
     background: linear-gradient(
         to bottom,
-        var(--primary),
-        var(--primary) 3px,
+        #fff,
+        #fff 50%,
+        var(--primary) 0,
+        var(--primary) calc(50% + 3px),
         #fff 0,
         #fff
     );
