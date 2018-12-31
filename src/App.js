@@ -49,13 +49,14 @@ class App extends Component {
         <header className="App-header">
           <Navigation user={this.state.user} loggedIn={this.state.loggedIn} />
         </header>
-        {(()=>{if(!(this.state.loggedIn)){
-           return <Login />}})()}
+
     <Route exact path="/" render={Home} />
     <Route path="/login" render={() =><Login loggedIn={this.state.loggedIn} />} />
     <Route path="/day" render={() =><Day />} />
     <Route path="/myavtivities" render={()=><Useractivities />} />
     <Route path="/reports" render={()=><Reports />} />
+    {(()=>{if(!(this.state.loggedIn)){
+           return <Login />}})()}
       </div>
     );
   }
