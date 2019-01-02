@@ -29,6 +29,8 @@ export default class planner extends React.Component{
     }
     
     render(){
+        
+        this.props.activities.sort((a,b)=>{return new Date(a.beg)-new Date(b.beg)})
         return(
         <div className="Plannercont">
             <div className="timeDisplay">

@@ -35,6 +35,7 @@
 .timeDisplay ul li{
     height:calc(100%/24);
     align-content: center;
+    padding: 5px;
 }
 
 
@@ -70,6 +71,9 @@
     position: absolute;
     font-size: 80%;
     box-shadow: rgb(50,50,50) 5px 5px;
+}
+.activityBlock:nth-child(odd){
+    background-color: var(--primary);
 }
 
 .arrow{
