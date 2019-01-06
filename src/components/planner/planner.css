@@ -1,6 +1,7 @@
 .Plannercont{
     display: flex;
     justify-content: start;
+    height:calc(700px * 1.04167 + 40px)
 }
 
 
@@ -44,7 +45,7 @@
     margin:0%;
     position: relative;
     align-content: center;
-    
+    top:calc(100% / 48);
     background: linear-gradient(
         to bottom,
         var(--primary),
@@ -53,7 +54,7 @@
         #fff
     );
     background-size: 100% calc(100% / 24);
-    position: absolute;
+    
 }
 
 .activityBlock{
