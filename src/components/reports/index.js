@@ -4,22 +4,10 @@ import './reports.css'
 
 
 
-import {Pie} from 'react-chartjs'
-
-import {activityget} from "../../api-requests/index.js";
 
 
-const ChartLegend = (data)=>{
-    
-    return (
-        <ul>
-            {
-                data.map((x,i)=>{
-                    return <li key={i}>{x.label}</li>})
-            }
-        </ul>
-    )
-}
+
+
 
 export default class reports extends React.Component{
     events =[]

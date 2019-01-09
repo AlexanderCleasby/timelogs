@@ -7,7 +7,7 @@ const Home = ()=>{
         <div>
             <Jumbotron >
                 <Container fluid>
-                    <img className="logo" src={icon} />
+                    <img className="logo" src={icon} alt="" />
                     <h1 className="display-5">
                     Your Time Logs
                     </h1>
@@ -16,9 +16,9 @@ const Home = ()=>{
             </Jumbotron>
                 <p className="lead">Instructions:</p>
                     <ul className="list-group">
-                        <a className="list-group-item">1. Add your activity categoties to the  <b>My Activites</b> tab</a>
-                        <a className="list-group-item">2. Track the time you spend on those activites from <b>Day</b> tab</a>
-                        <a className="list-group-item">3. Veiw reports of your tracked time from the <b>Reports</b> tab</a>
+                        <li className="list-group-item">1. Add your activity categoties to the  <b>My Activites</b> tab</li>
+                        <li className="list-group-item">2. Track the time you spend on those activites from <b>Day</b> tab</li>
+                        <li className="list-group-item">3. Veiw reports of your tracked time from the <b>Reports</b> tab</li>
                     </ul>
             
             

@@ -1,6 +1,6 @@
 .Plannercont{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     height:calc(700px * 1.04167 + 40px)
 }
 

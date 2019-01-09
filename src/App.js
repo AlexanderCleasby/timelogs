@@ -4,7 +4,6 @@ import axios from 'axios'
 import Navigation from './components/navigation';
 import Login from './components/login'
 import Day from './components/day'
-import Newevent from './components/newevent'
 import Home from './components/home'
 import Useractivities from  './components/useractivities'
 import Reports from './components/reports'
