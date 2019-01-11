@@ -10,6 +10,10 @@ import {
     NavItem,
     NavLink,
 } from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faGoogle } from '@fortawesome/free-brands-svg-icons'
+
 import icon from './../../assets/icon.png'
 
 
@@ -62,7 +66,7 @@ export default class useractivities extends React.Component{
             <NavItem>
                 {(()=>{
                     if(!this.props.loggedIn){
-                        return <NavLink className="nav-link" href='/auth/google'> Login with google</NavLink>}
+                        return <NavLink className="nav-link" href='/auth/google'> Login with <FontAwesomeIcon icon={faGoogle} /></NavLink>}
                     else{
                         return <NavLink className="nav-link text-light" href='/auth/logout'> Log out {this.props.user.name.first}</NavLink>
                     }

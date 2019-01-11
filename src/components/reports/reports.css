@@ -1,0 +1,18 @@
+.legendSquare{
+    height:10px;
+    width: 10px;
+    display: inline-block;
+}
+
+td:first-child{
+    text-align: center;
+}
+
+table{
+    width: 200px;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+

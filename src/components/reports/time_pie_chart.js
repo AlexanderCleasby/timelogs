@@ -11,6 +11,7 @@ const ChartLegend = (data)=>{
             {
                 data.map((x,i)=>{
                     return <tr key={i}>
+                    <td> <div className="legendSquare" style={{backgroundColor:x.color}} ></div> </td>
                     <td>{x.label}</td>
                     <td>{x.value}</td>
                     </tr>})
@@ -51,10 +52,17 @@ export default class timepie extends React.Component{
     
         //Boolean - Whether we animate scaling the Doughnut from the centre
         animateScale : false,
-        tooltipFontColor: '#afa',
+        tooltipFontColor: '#fff',
         tooltipFontSize: 18   
     }
     
+    colors = [
+        '#69D1B3',
+        '#7F69D1',
+        '#D16987',
+        '#FF78BF'
+    ]
+
     componentDidMount(){
         activityget(this.props.beg.getFullYear(),this.props.beg.getMonth(),this.props.beg.getDate(),this.props.lookback).then(
             (x)=>{
@@ -63,7 +71,7 @@ export default class timepie extends React.Component{
                     .filter((event,i,self)=>{
                         return self.indexOf(event) === i;
                     })
-                    .map((ActivityType)=>{
+                    .map((ActivityType,y)=>{
                     return {label:ActivityType + ' (hours)',
                         value:x.reduce((a,e)=>{
                             let begDate = new Date(e.beg)
@@ -76,7 +84,8 @@ export default class timepie extends React.Component{
                                 return a
                             }
                         
-                        },0)
+                        },0),
+                        color:this.colors[y]
                     }
                     }
                 )
