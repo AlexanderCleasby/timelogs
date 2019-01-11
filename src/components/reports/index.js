@@ -3,12 +3,6 @@ import Timepie from './time_pie_chart.js'
 import './reports.css'
 
 
-
-
-
-
-
-
 export default class reports extends React.Component{
     events =[]
     today = new Date(Date.now())
