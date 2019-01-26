@@ -85,7 +85,7 @@ export default class timepie extends React.Component{
                             }
                         
                         },0),
-                        color:this.colors[y]
+                        color:this.colors[y%this.colors.length]
                     }
                     }
                 )
