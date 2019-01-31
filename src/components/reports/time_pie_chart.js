@@ -98,7 +98,6 @@ export default class timepie extends React.Component{
 
 
     render(){
-        console.log(this.props)
         return(
             <div className="row">
             <Pie data={this.state.data} options={this.options} /> {ChartLegend(this.state.data)}
