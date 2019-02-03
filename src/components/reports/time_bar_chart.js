@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pie,Bar} from 'react-chartjs'
+import {Bar} from 'react-chartjs'
 
 
 import {activityget} from "../../api-requests/index.js";
@@ -27,26 +27,39 @@ export default class timepie extends React.Component{
         super();
         this.state = {
             data:{
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels:[],
             datasets: [
                 {
-                    label: "My First dataset",
+                    label: "Hours",
                     fillColor: "rgba(220,220,220,0.5)",
                     strokeColor: "rgba(220,220,220,0.8)",
                     highlightFill: "rgba(220,220,220,0.75)",
                     highlightStroke: "rgba(220,220,220,1)",
-                    data: [65, 59, 80, 81, 56, 55, 40]
-                },
-                {
-                    label: "My Second dataset",
-                    fillColor: "rgba(151,187,205,0.5)",
-                    strokeColor: "rgba(151,187,205,0.8)",
-                    highlightFill: "rgba(151,187,205,0.75)",
-                    highlightStroke: "rgba(151,187,205,1)",
-                    data: [28, 48, 40, 19, 86, 27, 90]
+                    data: []
                 }
             ]
-        }};
+            },
+            
+            intervals:[]
+        };
+    }
+    formatDate(date){
+        return date.getMonth()+1+"/"+date.getDate()
+    }
+    eventInBounds(events,type,beg,int){
+        var end = new Date(beg.getFullYear(),beg.getMonth(),beg.getDate()+int)
+        //console.log(beg,end)
+        return events.reduce((a,e)=>{
+            let begDate = new Date(e.beg)
+            let endDate = new Date(e.end)
+            //console.log(beg,end)
+            if (e.Activity==type && begDate>beg && endDate<end){
+                return ((endDate-begDate)/(1000*60*60))+a
+            }
+            else{
+                return a
+            }
+        },0)
     }
     options = {
         //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
@@ -84,7 +97,27 @@ export default class timepie extends React.Component{
         '#FF78BF'
     ]
     componentDidMount(){
-    //this.setState({data:[{label:"red",value:4}]})
+        this.setState({intervals:Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
+            return new Date(this.props.beg.getFullYear(), this.props.beg.getMonth(), this.props.beg.getDate()-(this.props.interval*i))
+        }).reverse()})
+        activityget(this.props.beg.getFullYear(),this.props.beg.getMonth(),this.props.beg.getDate(),this.props.lookback).then((x)=>{
+            this.setState({
+                data:{
+                    labels:this.state.intervals.map((date)=>this.formatDate(date)),
+                    datasets:[{
+                        label: "Hours",
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "rgba(220,220,220,0.75)",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
+                            console.log(this.state.intervals[i])
+                            return this.eventInBounds(x,"Code",this.state.intervals[i],this.props.interval)
+                        })
+                    }]}
+        })
+        })
+        //this.formatDate(new Date(this.props.beg.getFullYear(), this.props.beg.getMonth(), this.props.beg.getDate()))
     }
     
     render(){

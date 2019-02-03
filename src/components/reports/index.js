@@ -29,7 +29,7 @@ export default class reports extends React.Component{
             
             <h3>Month:</h3>
             <Timepie beg={this.today} lookback={30} />
-            <Timebar  beg={this.today} interval={1} lookback={7} />
+            <Timebar  beg={this.today} interval={7} lookback={28} />
             </div>
             
             
