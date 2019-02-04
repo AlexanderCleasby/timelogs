@@ -1,7 +1,6 @@
 if (process.env.DOTENV){
 	console.log('Loading variables off dot env')
 	require('dotenv').config()
-	console.log(process.env.FOO)
 }
 const express = require('express');
 const passportSetup = require('./config/passport')
