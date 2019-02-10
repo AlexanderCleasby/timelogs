@@ -14,7 +14,7 @@ const bodyParser = require("body-parser");
 
 
 //connect to db
-mongoose.connect(keys.mlab.uri,()=>{
+mongoose.connect(keys.mlab.uri, { useNewUrlParser: true },()=>{
 	console.log('connected to mongo db')
 	
 })
