@@ -42,8 +42,8 @@ router.get('/getactivities', (req, res, next) => {
     if (parseInt(req.query.lookback)){
         QueryDate.start= new Date(parseInt(req.query.year), parseInt(req.query.month), parseInt(req.query.day)-parseInt(req.query.lookback))
     }
-    console.log(req.user._id)
-    console.log(QueryDate.start,QueryDate.end)
+    
+    
     Activity.find({
             user: req.user._id,
             beg: {
@@ -52,7 +52,7 @@ router.get('/getactivities', (req, res, next) => {
             }
         },
         (err, activities) => {
-            console.log(activities)
+            console.log("Returning "+activities.length+" activities")
             res.send(activities)
         }
     )
