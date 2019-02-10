@@ -104,7 +104,7 @@ export default class timebar extends React.Component{
     render(){
         return(
             <div className="row">
-            <Bar data={this.state.data}  />
+            <Bar data={this.state.data} redraw />
             </div>
         )
     }
