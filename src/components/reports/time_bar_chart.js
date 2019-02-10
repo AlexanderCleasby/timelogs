@@ -96,7 +96,10 @@ export default class timebar extends React.Component{
             return new Date(this.props.beg.getFullYear(), this.props.beg.getMonth(), this.props.beg.getDate()-(this.props.interval*i))
         }).reverse()})
         activityget(this.props.beg.getFullYear(),this.props.beg.getMonth(),this.props.beg.getDate(),this.props.lookback).then((x)=>{
-            this.setState({events:x})
+            this.setState({events:x},()=>{
+                this.dataChange(this.state.events,{label:'',color:''})
+            }
+            )
             
         })
     }
