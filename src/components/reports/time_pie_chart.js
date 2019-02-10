@@ -3,29 +3,13 @@ import {Pie} from 'react-chartjs'
 
 import {activityget} from "../../api-requests/index.js";
 
-const ChartLegend = (data)=>{
-    
-    return (
-        <table>
-        <tbody>
-            {
-                data.map((x,i)=>{
-                    return <tr key={i}>
-                    <td> <div className="legendSquare" style={{backgroundColor:x.color}} ></div> </td>
-                    <td>{x.label}</td>
-                    <td>{x.value}</td>
-                    </tr>})
-            }
-        </tbody>
-        </table>
-    )
-}
 
 export default class timepie extends React.Component{
     constructor(props){
         super();
         this.state = {
-            data:[]
+            data:[],
+            selectedActivity:''
         }
     }
     options = {
@@ -62,6 +46,28 @@ export default class timepie extends React.Component{
         '#D16987',
         '#FF78BF'
     ]
+    
+    ChartLegend = (data)=>{
+    
+        return (
+            <table>
+            <tbody>
+                {
+                    data.map((x,i)=>{
+                        return (
+                        <tr key={i} onClick={()=>{this.props.ChangeSelectEvent(x)}}>
+                            <td> <div className="legendSquare" style={{backgroundColor:x.color}} ></div> </td>
+                            <td>{x.label}</td>
+                            <td>{x.value}</td>
+                            <td>hours</td>
+                        </tr>)
+                        }
+                    )
+                }
+            </tbody>
+            </table>
+        )
+    }
 
     componentDidMount(){
         activityget(this.props.beg.getFullYear(),this.props.beg.getMonth(),this.props.beg.getDate(),this.props.lookback).then(
@@ -72,7 +78,7 @@ export default class timepie extends React.Component{
                         return self.indexOf(event) === i;
                     })
                     .map((ActivityType,y)=>{
-                    return {label:ActivityType + ' (hours)',
+                    return {label:ActivityType,
                         value:x.reduce((a,e)=>{
                             let begDate = new Date(e.beg)
                             let endDate = new Date(e.end)
@@ -100,7 +106,7 @@ export default class timepie extends React.Component{
     render(){
         return(
             <div className="row">
-            <Pie data={this.state.data} options={this.options} /> {ChartLegend(this.state.data)}
+            <Pie data={this.state.data} options={this.options} /> {this.ChartLegend(this.state.data)}
             </div>
         )
     }

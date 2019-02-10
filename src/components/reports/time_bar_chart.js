@@ -4,25 +4,9 @@ import {Bar} from 'react-chartjs'
 
 import {activityget} from "../../api-requests/index.js";
 
-const ChartLegend = (data)=>{
-    
-    return (
-        <table>
-        <tbody>
-            {
-                data.map((x,i)=>{
-                    return <tr key={i}>
-                    <td> <div className="legendSquare" style={{backgroundColor:x.color}} ></div> </td>
-                    <td>{x.label}</td>
-                    <td>{x.value}</td>
-                    </tr>})
-            }
-        </tbody>
-        </table>
-    )
-}
 
-export default class timepie extends React.Component{
+
+export default class timebar extends React.Component{
     constructor(props){
         super();
         this.state = {
@@ -31,15 +15,12 @@ export default class timepie extends React.Component{
             datasets: [
                 {
                     label: "Hours",
-                    fillColor: "rgba(220,220,220,0.5)",
-                    strokeColor: "rgba(220,220,220,0.8)",
-                    highlightFill: "rgba(220,220,220,0.75)",
-                    highlightStroke: "rgba(220,220,220,1)",
+                    fillColor:"#111",
                     data: []
                 }
             ]
             },
-            
+            events:[],
             intervals:[]
         };
     }
@@ -60,6 +41,22 @@ export default class timepie extends React.Component{
                 return a
             }
         },0)
+    }
+    dataChange(data,selection){
+        this.setState({
+            data:{
+                labels:this.state.intervals.map((date)=>this.formatDate(date)),
+                datasets:[{
+                    label: "Hours",
+                    fillColor: selection.color,
+                    strokeColor: selection.color,
+                    highlightFill: selection.color,
+                    highlightStroke: selection.color,
+                    data: Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
+                        return this.eventInBounds(data,selection.label,this.state.intervals[i],this.props.interval)
+                    })
+                }]}
+    })
     }
     options = {
         //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
@@ -89,41 +86,25 @@ export default class timepie extends React.Component{
         //Number - Spacing between each of the X value sets
         barValueSpacing : 5
     }
-    
-    colors = [
-        '#69D1B3',
-        '#7F69D1',
-        '#D16987',
-        '#FF78BF'
-    ]
+    componentWillReceiveProps(props){
+        console.log(props.SelectedEvent.color)
+        this.dataChange(this.state.events,props.SelectedEvent);    
+    }
+
     componentDidMount(){
         this.setState({intervals:Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
             return new Date(this.props.beg.getFullYear(), this.props.beg.getMonth(), this.props.beg.getDate()-(this.props.interval*i))
         }).reverse()})
         activityget(this.props.beg.getFullYear(),this.props.beg.getMonth(),this.props.beg.getDate(),this.props.lookback).then((x)=>{
-            this.setState({
-                data:{
-                    labels:this.state.intervals.map((date)=>this.formatDate(date)),
-                    datasets:[{
-                        label: "Hours",
-                        fillColor: "rgba(220,220,220,0.5)",
-                        strokeColor: "rgba(220,220,220,0.8)",
-                        highlightFill: "rgba(220,220,220,0.75)",
-                        highlightStroke: "rgba(220,220,220,1)",
-                        data: Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
-                            console.log(this.state.intervals[i])
-                            return this.eventInBounds(x,"Code",this.state.intervals[i],this.props.interval)
-                        })
-                    }]}
+            this.setState({events:x})
+            
         })
-        })
-        //this.formatDate(new Date(this.props.beg.getFullYear(), this.props.beg.getMonth(), this.props.beg.getDate()))
     }
     
     render(){
         return(
             <div className="row">
-            <Bar data={this.state.data} options={this.options} />
+            <Bar data={this.state.data}  />
             </div>
         )
     }
