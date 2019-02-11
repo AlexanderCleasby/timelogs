@@ -91,6 +91,11 @@ export default class timebar extends React.Component{
         this.dataChange(this.state.events,props.SelectedEvent);    
     }
 
+    shouldComponentUpdate(newProps,newState){
+        console.log(this.props.SelectedEvent==newProps.SelectedEvent)
+        return (this.props.SelectedEvent!=newProps.SelectedEvent)
+    }
+
     componentDidMount(){
         this.setState({intervals:Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
             return new Date(this.props.beg.getFullYear(), this.props.beg.getMonth(), this.props.beg.getDate()-(this.props.interval*i))
