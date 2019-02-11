@@ -29,18 +29,25 @@ export default class reports extends React.Component{
     render(){
         
         return(
-            <div className="container">
+            <div className="container d-flex flex-wrap">
+                <div className="container d-flex flex-wrap justify-content-start">
+                    <h3>Week:</h3>
+                    <Timepie beg={this.today} lookback={7} ChangeSelectEvent={this.ChangeSelectEventWeekly} />
+                </div>
+                <div className="container d-flex flex-wrap justify-content-center">
+                    <Timebar  beg={this.today} interval={1} lookback={7} SelectedEvent={this.state.SelectedWeekly} />
+                </div>
             
-            <h3>Week:</h3>
-            <Timepie beg={this.today} lookback={7} ChangeSelectEvent={this.ChangeSelectEventWeekly} />
-            <Timebar  beg={this.today} interval={1} lookback={7} SelectedEvent={this.state.SelectedWeekly} />
             
             
-            <h3>Month:</h3>
-            <Timepie beg={this.today} lookback={30} ChangeSelectEvent={this.ChangeSelectEventMonthly} />
-            <Timebar  beg={this.today} interval={7} lookback={28} SelectedEvent={this.state.SelectedMonthly} />
+                <div className="container d-flex flex-wrap justify-content-start">
+                    <h3>Month:</h3>
+                    <Timepie beg={this.today} lookback={30} ChangeSelectEvent={this.ChangeSelectEventMonthly} />
+                </div>
+                <div className="container d-flex flex-wrap justify-content-center">
+                    <Timebar  beg={this.today} interval={7} lookback={28} SelectedEvent={this.state.SelectedMonthly} />
+                </div>
             </div>
-            
             
         )
     }

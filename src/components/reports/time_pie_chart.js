@@ -105,7 +105,7 @@ export default class timepie extends React.Component{
 
     render(){
         return(
-            <div className="row">
+            <div className="container d-flex flex-wrap justify-content-center">
             <Pie data={this.state.data} options={this.options} /> {this.ChartLegend(this.state.data)}
             </div>
         )
