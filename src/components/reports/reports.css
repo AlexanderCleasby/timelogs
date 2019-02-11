@@ -4,6 +4,10 @@
     display: inline-block;
 }
 
+tr{
+    cursor: pointer;
+}
+
 td:first-child{
     text-align: center;
 }
