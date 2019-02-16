@@ -13,10 +13,19 @@ td:first-child{
 }
 
 table{
-    width: 200px;
+    width: 230px;
+}
+
+.legendCont{
     background-color: rgb(0, 0, 0);
     color: #fff;
     padding: 10px;
     border-radius: 5px;
+    height: fit-content;
+}
+
+.legendCont .footer{
+    border-top: 2px #fff solid;
+    word-wrap: normal;
 }
 

@@ -48,24 +48,26 @@ export default class timepie extends React.Component{
     ]
     
     ChartLegend = (data)=>{
-    
         return (
+            <div className="legendCont">
             <table>
-            <tbody>
-                {
-                    data.map((x,i)=>{
-                        return (
-                        <tr key={i} onClick={()=>{this.props.ChangeSelectEvent(x)}}>
-                            <td> <div className="legendSquare" style={{backgroundColor:x.color}} ></div> </td>
-                            <td>{x.label}</td>
-                            <td>{x.value}</td>
-                            <td>hours</td>
-                        </tr>)
-                        }
-                    )
-                }
-            </tbody>
-            </table>
+                <tbody>
+                    {
+                        data.map((x,i)=>{
+                            return (
+                            <tr key={i} onClick={()=>{this.props.ChangeSelectEvent(x)}}>
+                                <td> <div className="legendSquare" style={{backgroundColor:x.color}} ></div> </td>
+                                <td>{x.label}</td>
+                                <td>{x.value}</td>
+                                <td>hours</td>
+                            </tr>)
+                            }
+                        )
+                    }
+                </tbody>
+                </table>
+                <div className="footer">* Click one.</div>
+            </div>
         )
     }
 
