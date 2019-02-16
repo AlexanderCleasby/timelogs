@@ -18,7 +18,6 @@ export default class reports extends React.Component{
     }
 
     ChangeSelectEventWeekly = (sel)=>{
-        console.log(sel)
         this.setState({SelectedWeekly:sel})
     }
 
