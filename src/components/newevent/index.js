@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./newevent.css";
 import axios from 'axios'
+import { Alert } from 'reactstrap';
 //import DateTimePicker from 'react-datetime-picker';
 
 
@@ -15,12 +16,14 @@ export default class newevent extends Component {
             shour:'12',
             smin:'00',
             sAmPm:'AM',
-            emonth:(now.getMonth()+1).toString().padStart(2,'0'),
-            eday:(now.getDate()).toString().padStart(2,'0'),
-            eyear:now.getFullYear().toString(),
-            ehour:'01',emin:'00',sAmPm:'AM',ActivityName:'',Note:'',
-            ActivityTypes:[]
+            ehour:'01',emin:'00',eAmPm:'AM',
+            ActivityName:'',
+            Note:'',
+            ActivityTypes:[],
+            start:new Date(Date.now()),
+            end:new Date(Date.now()+3600*1000)
         }
+        console.log(this.state.start,this.state.end)
         
         this.GetActivities()
         
@@ -47,15 +50,20 @@ export default class newevent extends Component {
     }
 
     valchange = e => {
-        if(e.target.type=='text'){
-            this.setState({[e.target.name]:e.target.value})
-        }
-        else{
-            this.setState({[e.target.name]:e.target.value})
-        }
-      
+        this.setState({[e.target.name]:e.target.value})
     }
+
+    validation = ()=>{
+        if (TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.shour,this.state.smin,this.state.sAmPm)>TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.ehour,this.state.emin,this.state.eAmPm)){
+            return <div className="alert alert-warning col-12" role="alert">Start time is after end time.</div>
+        }
+        else {
+            return false
+        }
+    }
+      
     render(){
+        console.log(this.validation(),this.state.ActivityName)
         return (
             <form id="cont" className="form" onSubmit={this.Submit}>
                 <div className='form-row'>
@@ -116,7 +124,10 @@ export default class newevent extends Component {
                 <input className="col-10 form-control" type="text" name="Note" value={this.state.Note} onChange={this.valchange}></input>
                 </div>
                 <div className='form-row'>
-                <input type="submit" value="Submit" className="btn btn-primary" />
+                {this.validation()}
+                </div>
+                <div className='form-row'>
+                <input type="submit" value="Submit" className="btn btn-primary" disabled={this.validation() || this.state.ActivityName == ""}/>
                 </div>
           </form>
       );
@@ -139,6 +150,7 @@ export default class newevent extends Component {
         return ops
     }
     const TimeConvert= (year,month,day,hour,min,AMPM)=>{
+        
         month=parseInt(month,10)-1
         hour=parseInt(hour,10)
         if(hour==12){
@@ -147,6 +159,5 @@ export default class newevent extends Component {
         if(AMPM=='PM'){
             hour=hour+12
         }
-        //console.log(parseInt(year,10),parseInt(month,10),parseInt(day,10),hour,parseInt(min,10))
         return new Date(parseInt(year,10),month,parseInt(day,10),hour,parseInt(min,10))
     }
