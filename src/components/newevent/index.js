@@ -67,6 +67,9 @@ export default class newevent extends Component {
         return (
             <form id="cont" className="form" onSubmit={this.Submit}>
                 <div className='form-row'>
+                {this.validation()}
+                </div>
+                <div className='form-row'>
                 <label className="col col-form-label">Day:</label>
                 <select className="col form-control" name="smonth" value={this.state.smonth} onChange={this.valchange}>
                     {numoptions(12)}
@@ -122,9 +125,6 @@ export default class newevent extends Component {
                 </div>
                 <div className='form-row'>
                 <input className="col-10 form-control" type="text" name="Note" value={this.state.Note} onChange={this.valchange}></input>
-                </div>
-                <div className='form-row'>
-                {this.validation()}
                 </div>
                 <div className='form-row'>
                 <input type="submit" value="Submit" className="btn btn-primary" disabled={this.validation() || this.state.ActivityName == ""}/>
