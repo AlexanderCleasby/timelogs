@@ -34,7 +34,6 @@
     "react": "^16.6.3",
     "react-bootstrap": "^0.32.4",
     "react-chartjs": "^1.2.0",
-    "react-chartjs-2": "^2.7.4",
     "react-datetime-picker": "^1.6.1",
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
