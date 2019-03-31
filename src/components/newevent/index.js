@@ -23,7 +23,7 @@ export default class newevent extends Component {
             start:new Date(Date.now()),
             end:new Date(Date.now()+3600*1000)
         }
-        console.log(this.state.start,this.state.end)
+        
         
         this.GetActivities()
         
