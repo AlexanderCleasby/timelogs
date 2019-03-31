@@ -59,7 +59,7 @@ export default class planner extends React.Component{
                         className="activityBlock" 
                         style={{top:(((begDate-this.props.day)/(24*60*60*1000))*100+"%"),
                         height:(((endDate-begDate)/(24*60*60*1000))*100+"%")}}>
-                        {activity.Activity} {begDate.getHours()}:{begDate.getMinutes().toString().padStart(2, '0')}-{endDate.getHours()}:{endDate.getMinutes().toString().padStart(2, '0')}</li>
+                        {activity.Activity} {begDate.getHours()>12 ? begDate.getHours()-12 : begDate.getHours()}:{begDate.getMinutes().toString().padStart(2, '0')}{begDate.getHours()>12 ? "p":"a"} - {endDate.getHours()>12 ? endDate.getHours()-12 : endDate.getHours()}:{endDate.getMinutes().toString().padStart(2, '0')}{endDate.getHours()>12 ? "p":"a"}</li>
                     })}
                 </ul>
             </div>
