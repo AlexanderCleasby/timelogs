@@ -64,14 +64,11 @@ export default class planner extends React.Component{
                 </ul>
             </div>
             <div className="timeDisplay">
-<h2  className="timeLabel">
-    <FontAwesomeIcon icon={faChevronCircleRight} className="arrow" onClick={this.props.nextdate} value="foraward" /> 
-</h2>
-</div>
+                <h2  className="timeLabel">
+                    <FontAwesomeIcon icon={faChevronCircleRight} className="arrow" onClick={this.props.nextdate} value="foraward" /> 
+                </h2>
+            </div>
         </div>
         )
     }
-
-
-
 }
