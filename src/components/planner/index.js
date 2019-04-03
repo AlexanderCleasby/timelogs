@@ -1,5 +1,7 @@
 import React from "react";
 import "./planner.css";
+import Newevent from "../newevent"
+import { Modal, ModalHeader,  ModalBody, ModalFooter } from "reactstrap"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
@@ -8,9 +10,12 @@ import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-sol
 export default class planner extends React.Component{
     constructor(props){
         super()
+        this.handleClose = this.handleClose.bind(this);
         this.hours = [];
         this.state={
-            activities:props.activities
+            activities:props.activities,
+            newEventTime:null,
+            show: false
         }
         for (let i = 0; i<=1;i++){
             var AmPm
@@ -24,8 +29,16 @@ export default class planner extends React.Component{
             for (let j = 1; j <=11;j++ ){
                 this.hours.push(j+AmPm)
             }
-            console.log(props)
         }
+    }
+
+    
+    handleClose() {
+        this.setState({ show: false });
+    }
+    newEvent = (t)=>{
+        this.setState({newEventTime:new Date(this.props.day.getFullYear(),this.props.day.getMonth(),this.props.day.getDate(),t)})
+        this.setState({ show: true });
     }
     
     render(){
@@ -51,6 +64,9 @@ export default class planner extends React.Component{
                 </h2>
                 
                 <ul className="daySchedule" >
+                    {Array.from(Array(24),(x,i)=>{
+                        return <li className="imagineBlock" onClick={()=>{this.newEvent(i)}}></li> 
+                    })}
                     {this.props.activities.map((activity,i)=>{
                         let begDate = new Date(activity.beg)
                         let endDate = new Date(activity.end)
@@ -68,6 +84,17 @@ export default class planner extends React.Component{
                     <FontAwesomeIcon icon={faChevronCircleRight} className="arrow" onClick={this.props.nextdate} value="foraward" /> 
                 </h2>
             </div>
+            <Modal size="lg" id="newevent_Modal" isOpen={this.state.show} toggle={this.handleClose}>
+                <ModalHeader>
+                    Add an Event!
+                </ModalHeader>
+                <ModalBody>
+                    <Newevent modalClose={this.handleClose} newEventTime={this.state.newEventTime} />
+                </ModalBody>
+                <ModalFooter>
+                    Do it now!
+                </ModalFooter>
+            </Modal>
         </div>
         )
     }

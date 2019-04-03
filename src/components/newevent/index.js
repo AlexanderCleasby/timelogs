@@ -8,15 +8,15 @@ import { Alert } from 'reactstrap';
 export default class newevent extends Component {
     constructor(props) {
         super(props);
-        var now = new Date(Date.now())
+        var now = props.newEventTime || new Date(Date.now())
         this.state={
             smonth:(now.getMonth()+1).toString().padStart(2,'0'),
             sday:(now.getDate()).toString().padStart(2,'0'),
             syear:now.getFullYear().toString(),
-            shour:'12',
+            shour:((now.getHours()+11)%12+1).toString().padStart(2,'0'),
             smin:'00',
-            sAmPm:'AM',
-            ehour:'01',emin:'00',eAmPm:'AM',
+            sAmPm:now.getHours()<=11 ? "AM":"PM",
+            ehour:((now.getHours()+12)%12+1).toString().padStart(2,'0'),emin:'00',eAmPm:now.getHours()<=10 ? "AM":"PM",
             ActivityName:'',
             Note:'',
             ActivityTypes:[],
@@ -63,7 +63,6 @@ export default class newevent extends Component {
     }
       
     render(){
-        console.log(this.validation(),this.state.ActivityName)
         return (
             <form id="cont" className="form" onSubmit={this.Submit}>
                 <div className='form-row'>
