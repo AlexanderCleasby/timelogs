@@ -25,9 +25,15 @@ router.post('/newactivity', (req, res, next) => {
         end: req.body.end,
         Activity: req.body.ActivityName,
         Note: req.body.Note
-    }).save().then((newActivity) => {
-        console.log('saved activity: ', newActivity.beg.toDateString())
-        res.sendStatus(200)
+    }).save((err,newActivity)=>{
+        if (err){
+            console.log("an error occured.")
+            res.sendStatus(400)
+        }
+        else{
+            console.log('saved activity!')
+            res.sendStatus(200)
+        }
     })
 
     
