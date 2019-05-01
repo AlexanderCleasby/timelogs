@@ -33,7 +33,7 @@ export default class useractivities extends React.Component{
     render(){
     return (
     <div>
-    <Navbar color="primary"  dark expand="md">
+    <Navbar color="dark"  dark expand="md">
     <img src={icon}></img>
     <NavbarBrand className="text-light" href='/' >Time Logs</NavbarBrand>
     <NavbarToggler onClick={this.toggle} />
