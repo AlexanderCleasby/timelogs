@@ -6,7 +6,7 @@
 
 
 .timeLabel{
-    background-color: var(--primary);
+    background-color: var(--dark);
     color: var(--light);
     height:32px;
     width: 100%;
@@ -48,8 +48,8 @@
     top:calc(100% / 48);
     background: linear-gradient(
         to bottom,
-        var(--primary),
-        var(--primary) 3px,
+        var(--dark),
+        var(--dark) 3px,
         #fff 0,
         #fff
     );
@@ -59,7 +59,7 @@
 
 .activityBlock{
     background-color: var(--secondary);
-    color: var(--light);
+    color: var(--dark);
     border-radius: 10px;
     padding: 1% 10%;
     width:90%;
