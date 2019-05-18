@@ -35,8 +35,12 @@ export default class newevent extends Component {
         axios.post('/trackerapi/newactivity',{
         beg:TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.shour,this.state.smin,this.state.sAmPm),
         end:TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.ehour,this.state.emin,this.state.eAmPm),
-        ActivityName:this.state.ActivityName,Note:this.state.Note}).then((res)=>{console.log(res)})
-        this.props.modalClose()
+        ActivityName:this.state.ActivityName,Note:this.state.Note}).then(
+            (res)=>{
+                this.props.modalClose()
+            }
+        )
+        
         e.preventDefault();
     }
 

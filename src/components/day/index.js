@@ -31,17 +31,18 @@ export default class day extends React.Component{
         axios.get('trackerapi/getactivities?year='+this.state.date.getFullYear()+'&month='+this.state.date.getMonth()+'&day='+this.state.date.getDate()).then(
             (res)=>{
                 this.setState({activities:res.data})
-                console.log("Activities found:",res.data)
+                
             }
         )
     }
 
     handleClose() {
+        console.log('hiding')
         this.setState({ show: false });
         axios.get('trackerapi/getactivities?year='+this.state.date.getFullYear()+'&month='+this.state.date.getMonth()+'&day='+this.state.date.getDate()).then(
             (res)=>{
                 this.setState({activities:res.data})
-                console.log("Activities found:",res.data)
+                
             }
         )
     }
@@ -62,7 +63,7 @@ export default class day extends React.Component{
                 this.setState({
                     activities: res.data
                 })
-                console.log("Activities found:", res.data)
+                
             }
         )
         }
@@ -90,8 +91,8 @@ export default class day extends React.Component{
     
     <div className="ComponentCont">
         Hello User what have you been doing today?
-        <Planner id="Planner" day={this.state.date} activities={this.state.activities} back={this.handleDateBack} nextdate={this.handleDateForward} />
-        <button className="btn btn-dark text-light" onClick={this.handleShow}>
+        <Planner id="Planner" day={this.state.date} activities={this.state.activities} back={this.handleDateBack} nextdate={this.handleDateForward} refresh={this.handleClose} />
+        <button className="btn btn-primary" onClick={this.handleShow}>
             New Event
         </button>
         <Modal size="lg" id="newevent_Modal" isOpen={this.state.show} toggle={this.handleClose} >

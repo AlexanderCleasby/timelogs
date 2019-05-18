@@ -34,6 +34,7 @@ export default class planner extends React.Component{
 
     
     handleClose() {
+        this.props.refresh()
         this.setState({ show: false });
     }
     newEvent = (t)=>{
