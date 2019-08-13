@@ -12,10 +12,6 @@ import axios from 'axios'
 export default class day extends React.Component{
     constructor(){
         super()
-        this.handleShow = this.handleShow.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleDateBack = this.handleDateBack.bind(this)
-        this.handleDateForward = this.handleDateForward.bind(this)
 
         this.state = {
           show: false,
@@ -27,7 +23,7 @@ export default class day extends React.Component{
         
     }
     
-    componentDidMount(){
+    componentDidMount= ()=>{
         axios.get('trackerapi/getactivities?year='+this.state.date.getFullYear()+'&month='+this.state.date.getMonth()+'&day='+this.state.date.getDate()).then(
             (res)=>{
                 this.setState({activities:res.data})
@@ -36,7 +32,7 @@ export default class day extends React.Component{
         )
     }
 
-    handleClose() {
+    handleClose =()=>{
         console.log('hiding')
         this.setState({ show: false });
         axios.get('trackerapi/getactivities?year='+this.state.date.getFullYear()+'&month='+this.state.date.getMonth()+'&day='+this.state.date.getDate()).then(
@@ -47,7 +43,7 @@ export default class day extends React.Component{
         )
     }
     
-    handleShow() {
+    handleShow=()=>{
         this.setState({ show: true });
         
     }

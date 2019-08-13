@@ -27,8 +27,7 @@ export default class newevent extends Component {
         
         this.GetActivities()
         
-        this.Submit=this.Submit.bind(this)
-        this.valchange=this.valchange.bind(this)
+      
     }
     Submit = e =>{
        
