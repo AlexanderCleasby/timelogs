@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import "./newevent.css";
 import axios from 'axios'
+import TimeSelect from "./timeSelect"
 import {numoptions, TimeConvert} from './timeUtility'
-//import DateTimePicker from 'react-datetime-picker';
 
 
 export default class newevent extends Component {
@@ -20,8 +20,8 @@ export default class newevent extends Component {
             ActivityName:'',
             Note:'',
             ActivityTypes:[],
-            start:new Date(Date.now()),
-            end:new Date(Date.now()+3600*1000)
+            Start:now,
+            End:new Date(now.getTime()+3600*1000)
         }
         
         
@@ -30,23 +30,21 @@ export default class newevent extends Component {
       
     }
     Submit = e =>{
-       
+        e.preventDefault();
         axios.post('/trackerapi/newactivity',{
-        beg:TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.shour,this.state.smin,this.state.sAmPm),
-        end:TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.ehour,this.state.emin,this.state.eAmPm),
+        beg:this.state.Start,
+        end:this.state.End,
         ActivityName:this.state.ActivityName,Note:this.state.Note}).then(
             (res)=>{
                 this.props.modalClose()
             }
         )
-        
-        e.preventDefault();
     }
 
     GetActivities = e=>{
         axios.get('/trackerapi/getactivitytypes').then(
             (res)=>{
-                console.log(res)
+                
                 this.setState({ActivityTypes:res.data})
             }
         )
@@ -56,8 +54,30 @@ export default class newevent extends Component {
         this.setState({[e.target.name]:e.target.value})
     }
 
+    ChangeTime = (target,e) => {
+        let newTime =this.state[target]
+        switch (e.target.name){
+            case "hour":
+                newTime.setHours(e.target.value)
+            break
+            case "min":
+                newTime.setMinutes(e.target.value)
+            break
+            case "AMPM":
+                if (e.target.value==="PM" && newTime.getHours()<12){
+                    newTime.setHours(newTime.getHours()+12)
+                }
+                else if (e.target.value==="AM" && newTime.getHours()<12){
+                    newTime.setHours(newTime.getHours-12)
+                }
+            break
+        }
+        this.setState({[target]:newTime})
+        
+    }
+
     validation = ()=>{
-        if (TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.shour,this.state.smin,this.state.sAmPm)>TimeConvert(this.state.syear,this.state.smonth,this.state.sday,this.state.ehour,this.state.emin,this.state.eAmPm)){
+        if (this.state.Start>this.state.End){
             return <div className="alert alert-warning col-12" role="alert">Start time is after end time.</div>
         }
         else {
@@ -66,6 +86,8 @@ export default class newevent extends Component {
     }
       
     render(){
+        console.log(this.state.Start.toLocaleString('en-US'))
+        console.log(this.state.End.toLocaleString('en-US'))
         return (
             <form id="cont" className="form" onSubmit={this.Submit}>
                 <div className='form-row'>
@@ -83,32 +105,11 @@ export default class newevent extends Component {
                     {numoptions(3,2017)}
                 </select>
                 </div>
-                <div className='form-row'>
-                <label  className="col col-form-label">Start:</label>
-                <select className="col form-control" name="shour" value={this.state.shour} onChange={this.valchange}>
-                    {numoptions(12)}
-                </select>:
-                <select className="col form-control" name="smin" value={this.state.smin} onChange={this.valchange}>
-                    {numoptions(60,0,true)}
-                </select>
-                <select className="col form-control" name="sAmPm" value={this.state.sAmPm} onChange={this.valchange}>
-                    <option value='AM'>AM</option>
-                    <option value='PM'>PM</option>
-                </select>
-                </div>
-                <div className='form-row'>
-                <label  className="col col-form-label">End:</label>
-                <select className="col form-control" name="ehour" value={this.state.ehour} onChange={this.valchange}>
-                    {numoptions(12)}
-                </select>:
-                <select className="col form-control" name="emin" value={this.state.emin} onChange={this.valchange}>
-                    {numoptions(60,0,true)}
-                </select>
-                <select className="col form-control" name="eAmPm" value={this.state.eAmPm} onChange={this.valchange}>
-                    <option value='AM'>AM</option>
-                    <option value='PM'>PM</option>
-                </select>
-                </div>
+                
+                {TimeSelect({time:this.state.Start,label:"Start",change:this.ChangeTime.bind(this)})}
+                
+                {TimeSelect({time:this.state.End,label:"End",change:this.ChangeTime.bind(this)})}
+                
                 <div className='form-row'>
                 <label className="col-2 col-form-label">Activity:</label>
                 </div>
