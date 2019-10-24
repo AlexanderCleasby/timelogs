@@ -29,7 +29,7 @@
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
-    "mongoose": "^5.2.15",
+    "mongoose": "^5.7.5",
     "node-sass": "^4.11.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "github:MarshallOfSound/passport-google-oauth2#patch-1",
