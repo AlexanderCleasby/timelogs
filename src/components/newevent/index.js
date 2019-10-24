@@ -86,8 +86,6 @@ export default class newevent extends Component {
     }
       
     render(){
-        console.log(this.state.Start.toLocaleString('en-US'))
-        console.log(this.state.End.toLocaleString('en-US'))
         return (
             <form id="cont" className="form" onSubmit={this.Submit}>
                 <div className='form-row'>
