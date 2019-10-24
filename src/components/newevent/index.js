@@ -13,10 +13,6 @@ export default class newevent extends Component {
             smonth:(now.getMonth()+1).toString().padStart(2,'0'),
             sday:(now.getDate()).toString().padStart(2,'0'),
             syear:now.getFullYear().toString(),
-            shour:((now.getHours()+11)%12+1).toString().padStart(2,'0'),
-            smin:'00',
-            sAmPm:now.getHours()<=11 ? "AM":"PM",
-            ehour:((now.getHours()+12)%12+1).toString().padStart(2,'0'),emin:'00',eAmPm:now.getHours()<=10 ? "AM":"PM",
             ActivityName:'',
             Note:'',
             ActivityTypes:[],
@@ -86,6 +82,8 @@ export default class newevent extends Component {
     }
       
     render(){
+        console.log(this.state.Start.toLocaleString('en-US'))
+        console.log(this.state.End.toLocaleString('en-US'))
         return (
             <form id="cont" className="form" onSubmit={this.Submit}>
                 <div className='form-row'>
