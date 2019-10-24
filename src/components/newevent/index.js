@@ -106,9 +106,9 @@ export default class newevent extends Component {
                 </select>
                 </div>
                 
-                {TimeSelect({time:this.state.Start,label:"Start",change:this.ChangeTime.bind(this)})}
+                <TimeSelect time={this.state.Start} label={"Start"} change={this.ChangeTime.bind(this)} />
                 
-                {TimeSelect({time:this.state.End,label:"End",change:this.ChangeTime.bind(this)})}
+                <TimeSelect time={this.state.End} label={"End"} change={this.ChangeTime.bind(this)} />
                 
                 <div className='form-row'>
                 <label className="col-2 col-form-label">Activity:</label>
