@@ -35,7 +35,7 @@ export default class useractivities extends React.Component{
     <div>
     <Navbar color="dark"  dark expand="md">
     <img src={icon}></img>
-    <NavbarBrand className="text-light" href='/' >Time Logs</NavbarBrand>
+    <NavbarBrand className="text-light" to="/" tag={Link} >Time Logs</NavbarBrand>
     <NavbarToggler onClick={this.toggle} />
     <Collapse isOpen={this.state.isOpen} navbar>
         {(()=>{
@@ -43,18 +43,18 @@ export default class useractivities extends React.Component{
                 return(
                     <Nav  navbar>
                         <NavItem >
-                            <NavLink>
-                                <Link className="text-light"  to="/day">Day</Link>
+                            <NavLink className="text-light"  to="/day" tag={Link}>
+                                Day
                             </NavLink>
                         </NavItem>
                         <NavItem >
-                            <NavLink>
-                                <Link  className="text-light" to="/myavtivities">My Activities</Link>
+                            <NavLink className="text-light" to="/myavtivities" tag={Link}>
+                                My Activities
                             </NavLink>
                         </NavItem>
                         <NavItem >
-                            <NavLink>
-                                <Link  className="text-light" to="/reports">Reports</Link>
+                            <NavLink className="text-light" to="/reports" tag={Link}>
+                                Reports
                             </NavLink>
                         </NavItem>
                     </Nav>
