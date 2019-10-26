@@ -1,4 +1,4 @@
 node_modules
 build
 .env
-yarn-error.log
+/yarn-error.log
