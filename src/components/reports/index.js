@@ -34,7 +34,7 @@ class reports extends React.Component{
             <div className="container d-flex flex-wrap">
                 <div className="container d-flex flex-wrap justify-content-start">
                     <h3>Week:</h3>
-                    <Timepie activities={this.past("week")} beg={this.today} lookback={7} ChangeSelectEvent={this.ChangeSelectEventWeekly} />
+                    <Timepie activities={this.past("week")} ChangeSelectEvent={this.ChangeSelectEventWeekly} />
                 </div>
                 <div className="container d-flex flex-wrap justify-content-center">
                     <Timebar activities={this.past("week")}  beg={this.today} interval={1} lookback={7} SelectedEvent={this.state.SelectedWeekly} />
@@ -44,7 +44,7 @@ class reports extends React.Component{
             
                 <div className="container d-flex flex-wrap justify-content-start">
                     <h3>Month:</h3>
-                    <Timepie activities={this.past("month")} beg={this.today} lookback={30} ChangeSelectEvent={this.ChangeSelectEventMonthly} />
+                    <Timepie activities={this.past("month")} ChangeSelectEvent={this.ChangeSelectEventMonthly} />
                 </div>
                 <div className="container d-flex flex-wrap justify-content-center">
                     <Timebar activities={this.past("month")} beg={this.today} interval={7} lookback={28} SelectedEvent={this.state.SelectedMonthly} />
