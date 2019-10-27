@@ -8,7 +8,6 @@ export default class timepie extends React.Component{
     constructor(props){
         super();
         this.state = {
-            data:[],
             selectedActivity:''
         }
     }
@@ -71,36 +70,30 @@ export default class timepie extends React.Component{
         )
     }
 
-    componentDidMount(){
-        activityget(this.props.beg.getFullYear(),this.props.beg.getMonth(),this.props.beg.getDate(),this.props.lookback).then(
-            (x)=>{
-                
-                this.setState({ data: x.map(y=>y.Activity)
-                    .filter((event,i,self)=>{
-                        return self.indexOf(event) === i;
-                    })
-                    .map((ActivityType,y)=>{
-                    return {label:ActivityType,
-                        value:x.reduce((a,e)=>{
-                            let begDate = new Date(e.beg)
-                            let endDate = new Date(e.end)
+    formatData = ()=>{
+        let activities = this.props.activities
+        let label = activities.map(x=>x.Activity).filter((event,i,self)=>self.indexOf(event) === i)
 
-                            if (e.Activity==ActivityType){
-                                return ((endDate-begDate)/(1000*60*60))+a
-                            }
-                            else{
-                                return a
-                            }
-                        
-                        },0),
-                        color:this.colors[y%this.colors.length]
+        return label.map((ActivityType,i)=>{
+            return {label:ActivityType,
+                value:activities.reduce((a,e)=>{
+                    let begDate = new Date(e.beg)
+                    let endDate = new Date(e.end)
+
+                    if (e.Activity==ActivityType){
+                        return ((endDate-begDate)/(1000*60*60))+a
                     }
+                    else{
+                        return a
                     }
-                )
+                },0),
+                color:this.colors[i%this.colors.length]
             }
-            )
-        }
-        )
+        })
+    }
+
+    componentDidMount(){
+        this.data=this.formatData()
     }
 
 
@@ -108,7 +101,7 @@ export default class timepie extends React.Component{
     render(){
         return(
             <div className="container d-flex flex-wrap justify-content-center">
-            <Pie data={this.state.data} options={this.options} /> {this.ChartLegend(this.state.data)}
+            <Pie data={this.formatData()} options={this.options} /> {this.ChartLegend(this.formatData())}
             </div>
         )
     }
