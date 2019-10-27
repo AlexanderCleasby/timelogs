@@ -29,12 +29,11 @@ export default class timebar extends React.Component{
     }
     eventInBounds(events,type,beg,int){
         var end = new Date(beg.getFullYear(),beg.getMonth(),beg.getDate()+int)
-        //console.log(beg,end)
         return events.reduce((a,e)=>{
             let begDate = new Date(e.beg)
             let endDate = new Date(e.end)
-            //console.log(beg,end)
-            if (e.Activity==type && begDate>beg && endDate<end){
+            
+            if (e.Activity===type && begDate>beg && endDate<end){
                 return ((endDate-begDate)/(1000*60*60))+a
             }
             else{
@@ -87,13 +86,11 @@ export default class timebar extends React.Component{
         barValueSpacing : 5
     }
     componentWillReceiveProps(props){
-        console.log(props.SelectedEvent.color)
         this.dataChange(this.state.events,props.SelectedEvent);    
     }
 
-    shouldComponentUpdate(newProps,newState){
-        console.log(this.props.SelectedEvent==newProps.SelectedEvent)
-        return (this.props.SelectedEvent!=newProps.SelectedEvent)
+    shouldComponentUpdate(newProps){
+        return (this.props.SelectedEvent!==newProps.SelectedEvent)
     }
 
     componentDidMount(){
