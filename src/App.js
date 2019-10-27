@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
+import Moment from 'moment'
 import Navigation from './components/navigation';
 import Login from './components/login'
 import Day from './components/day'
@@ -8,7 +9,8 @@ import Home from './components/home'
 import Useractivities from  './components/useractivities'
 import Reports from './components/reports'
 import { Route } from "react-router-dom";
-
+import { connect } from "react-redux";
+import { getActivities } from "./actions/activitiesActions";
 
 class App extends Component {
 	constructor() {
@@ -29,6 +31,7 @@ class App extends Component {
           loggedIn: true,
           user: response.data.user
         })
+        this.props.getActivities(Moment().format("YYYY"),Moment().format('MM'),Moment().format('DD'),100)
       } else {
         this.setState({
           loggedIn: false,
@@ -61,5 +64,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(state=>state,{getActivities})(App);
 
