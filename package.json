@@ -33,7 +33,7 @@
     "node-sass": "^4.11.0",
     "passport": "^0.4.0",
     "passport-google-oauth20": "github:MarshallOfSound/passport-google-oauth2#patch-1",
-    "react": "^16.6.3",
+    "react": "^16.11.0",
     "react-bootstrap": "^0.32.4",
     "react-chartjs": "^1.2.0",
     "react-datetime-picker": "^1.6.1",
@@ -44,6 +44,7 @@
     "react-scripts": "3.2.0",
     "reactstrap": "^6.4.0",
     "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "thunk": "^0.0.1"
   },
   "devDependencies": {
