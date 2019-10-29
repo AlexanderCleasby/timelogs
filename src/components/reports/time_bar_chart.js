@@ -1,39 +1,24 @@
 import React from 'react';
 import {Bar} from 'react-chartjs'
-
+import moment from 'moment'
 
 import {activityget} from "../../api-requests/index.js";
 
 
 
 export default class timebar extends React.Component{
-    constructor(props){
-        super();
-        this.state = {
-            data:{
-            labels:[],
-            datasets: [
-                {
-                    label: "Hours",
-                    fillColor:"#111",
-                    data: []
-                }
-            ]
-            },
-            events:[],
-            intervals:[]
-        };
-    }
+
     formatDate(date){
         return date.getMonth()+1+"/"+date.getDate()
     }
     eventInBounds(events,type,beg,int){
-        var end = new Date(beg.getFullYear(),beg.getMonth(),beg.getDate()+int)
+        //set "end" to one interval after the begining of the interval
+        let end = beg.clone().add(int,'days')
         return events.reduce((a,e)=>{
-            let begDate = new Date(e.beg)
-            let endDate = new Date(e.end)
-            
-            if (e.Activity===type && begDate>beg && endDate<end){
+            let begDate = moment(e.beg)
+            let endDate = moment(e.end)
+            //If activity matches the selected type then add it to the sum
+            if (e.Activity===type && begDate.isAfter(beg) && endDate.isBefore(end)){
                 return ((endDate-begDate)/(1000*60*60))+a
             }
             else{
@@ -41,22 +26,7 @@ export default class timebar extends React.Component{
             }
         },0)
     }
-    dataChange(data,selection){
-        this.setState({
-            data:{
-                labels:this.state.intervals.map((date)=>this.formatDate(date)),
-                datasets:[{
-                    label: "Hours",
-                    fillColor: selection.color,
-                    strokeColor: selection.color,
-                    highlightFill: selection.color,
-                    highlightStroke: selection.color,
-                    data: Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
-                        return this.eventInBounds(data,selection.label,this.state.intervals[i],this.props.interval)
-                    })
-                }]}
-    })
-    }
+
     options = {
         //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
         scaleBeginAtZero : true,
@@ -85,31 +55,30 @@ export default class timebar extends React.Component{
         //Number - Spacing between each of the X value sets
         barValueSpacing : 5
     }
-    componentWillReceiveProps(props){
-        this.dataChange(this.state.events,props.SelectedEvent);    
-    }
 
     shouldComponentUpdate(newProps){
         return (this.props.SelectedEvent!==newProps.SelectedEvent)
     }
 
-    componentDidMount(){
-        this.setState({intervals:Array.apply(null, {length: this.props.lookback/this.props.interval}).map((v, i)=>{
-            return new Date(this.props.beg.getFullYear(), this.props.beg.getMonth(), this.props.beg.getDate()-(this.props.interval*i))
-        }).reverse()})
-        activityget(this.props.beg.getFullYear(),this.props.beg.getMonth(),this.props.beg.getDate(),this.props.lookback).then((x)=>{
-            this.setState({events:x},()=>{
-                this.dataChange(this.state.events,{label:'',color:''})
-            }
-            )
-            
-        })
+    data = ()=>{
+        let endOfPeriod = this.props.interval===1 ? moment() : moment().subtract(this.props.interval,"day").startOf('day')
+        let intervals = Array.apply(null,{length: this.props.lookback/this.props.interval}).map((v,i)=>endOfPeriod.clone().subtract(this.props.interval*i,"day")).reverse()
+        return {
+            labels:intervals.map((int)=>int.format("MM/DD")),
+            datasets:[{
+                fillColor:this.props.SelectedEvent.color,
+                strokeColor:this.props.SelectedEvent.color,
+                highlightFill:this.props.SelectedEvent.color,
+                highlightStroke:this.props.SelectedEvent.color,
+                data:intervals.map((interval)=>this.eventInBounds(this.props.activities,this.props.SelectedEvent.label,interval,this.props.interval))
+            }]
+        }
     }
-    
+
     render(){
         return(
             <div className="row">
-            <Bar data={this.state.data} redraw />
+            <Bar data={this.data()} redraw />
             </div>
         )
     }
