@@ -2,10 +2,6 @@ import React from 'react';
 import {Bar} from 'react-chartjs'
 import moment from 'moment'
 
-import {activityget} from "../../api-requests/index.js";
-
-
-
 export default class timebar extends React.Component{
 
     formatDate(date){
