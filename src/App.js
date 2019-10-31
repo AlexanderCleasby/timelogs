@@ -10,7 +10,7 @@ import Useractivities from  './components/useractivities'
 import Reports from './components/reports'
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { getActivities } from "./actions/activitiesActions";
+import { importActivities } from "./actions/activitiesActions";
 
 class App extends Component {
 	constructor() {
@@ -31,7 +31,7 @@ class App extends Component {
           loggedIn: true,
           user: response.data.user
         })
-        this.props.getActivities(Moment().format("YYYY"),Moment().format('MM'),Moment().format('DD'),100)
+        this.props.importActivities(Moment(),100)
       } else {
         this.setState({
           loggedIn: false,
@@ -64,5 +64,5 @@ class App extends Component {
   }
 }
 
-export default connect(state=>state,{getActivities})(App);
+export default connect(state=>state,{importActivities})(App);
 
