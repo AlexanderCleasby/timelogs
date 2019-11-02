@@ -38,8 +38,7 @@ export default class planner extends React.Component{
         this.setState({ show: false });
     }
     newEvent = (t)=>{
-        this.setState({newEventTime:new Date(this.props.day.getFullYear(),this.props.day.getMonth(),this.props.day.getDate(),t)})
-        this.setState({ show: true });
+        this.setState({newEventTime:new Date(this.props.day.year(),this.props.day.month(),this.props.day.date(),t),show: true })
     }
     
     render(){
@@ -60,8 +59,7 @@ export default class planner extends React.Component{
             </div>
             <div >
                 <h2 className="timeLabel dayLabel">
-                    
-                    {this.props.day.toDateString().substring(0,3)} {(this.props.day.getMonth()+1)+"/"+this.props.day.getDate()}
+                    {this.props.day.format("MM/DD")}
                 </h2>
                 
                 <ul className="daySchedule" >

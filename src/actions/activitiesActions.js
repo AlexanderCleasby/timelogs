@@ -1,15 +1,25 @@
-import { activityget } from "../api-requests";
+import { activityget, activityPost } from "../api-requests";
 import moment from "moment"
 
 export function importActivities(end, lookback) {
-    
-    let start = end.clone().subtract(lookback, "day")
-    if (!this.span.start){
-        start = moment(this.span.start).isAfter(start) ? moment(this.span.start) : start 
-        end = moment(this.span.end).isBefore(end) ? moment(this.span.end) : end
+    let start = end.clone().subtract(lookback, "day").startOf("day")
+    let stateStart = moment(this.span.start)
+    let stateEnd = moment(this.span.end)
+    let requestEnd = end
+    let requestStart = start
+    if (this.span.start){
+        requestEnd = stateStart.isBefore(end) && stateEnd.isAfter(end) ? stateStart : end
+        requestStart = stateEnd.isAfter(start) && stateStart.isBefore(start) ? stateEnd : start  
+        start = stateStart.isSameOrBefore(start) ? stateStart : start 
+        end = stateEnd.isSameOrAfter(end) ? stateEnd : end
     }
-    console.log(end.day())
-    return (dispatch) => activityget(end.year(), end.month(), end.date(), lookback)
+
+    lookback=requestEnd.diff(requestStart,'days')
+    console.table(
+        { start:start.format(), end:end.format(),requestStart:requestStart.format(),requestEnd:requestEnd.format(),lookback:lookback }
+    )
+
+    return (dispatch) => activityget(requestEnd.year(), requestEnd.month(), requestEnd.date(), lookback)
         .then((activities) => dispatch({
             type: "IMPORT_ACTIVITIES",
             activities: activities,
@@ -18,4 +28,8 @@ export function importActivities(end, lookback) {
                 end: end.format()
             }
         }))
+}
+
+export function newEvent(beg,end,ActivityName,Note) {
+
 }
