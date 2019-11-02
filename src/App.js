@@ -31,7 +31,9 @@ class App extends Component {
           loggedIn: true,
           user: response.data.user
         })
-        this.props.importActivities(Moment(),100)
+        if (!this.props.span.start){
+          this.props.importActivities(Moment().startOf('day'),100)
+        }
       } else {
         this.setState({
           loggedIn: false,

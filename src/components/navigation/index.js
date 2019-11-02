@@ -35,7 +35,7 @@ export default class useractivities extends React.Component{
     <div>
     <Navbar color="dark"  dark expand="md">
     <img src={icon}></img>
-    <NavbarBrand className="text-light" to="/" tag={Link} >Time Logs</NavbarBrand>
+    <NavbarBrand className="text-light" href="/" >Time Logs</NavbarBrand>
     <NavbarToggler onClick={this.toggle} />
     <Collapse isOpen={this.state.isOpen} navbar>
         {(()=>{

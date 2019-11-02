@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import "./newevent.css";
 import axios from 'axios'
 import TimeSelect from "./timeSelect"
-import {numoptions, TimeConvert} from './timeUtility'
+import { connect } from "react-redux"
+import { numoptions } from './timeUtility'
 
 
-export default class newevent extends Component {
+class newevent extends Component {
     constructor(props) {
         super(props);
         const now = props.newEventTime || new Date(Date.now())
@@ -19,12 +20,9 @@ export default class newevent extends Component {
             Start:now,
             End:new Date(now.getTime()+3600*1000)
         }
-        
-        
-        this.GetActivities()
-        
-      
+        this.GetActivities()    
     }
+
     Submit = e =>{
         e.preventDefault();
         axios.post('/trackerapi/newactivity',{
@@ -82,8 +80,6 @@ export default class newevent extends Component {
     }
       
     render(){
-        console.log(this.state.Start.toLocaleString('en-US'))
-        console.log(this.state.End.toLocaleString('en-US'))
         return (
             <form id="cont" className="form" onSubmit={this.Submit}>
                 <div className='form-row'>
@@ -133,4 +129,4 @@ export default class newevent extends Component {
     }
     }
 
-    
+    export default connect(state=>state)(newevent)    
