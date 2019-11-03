@@ -58,7 +58,8 @@ router.get('/getactivities', (req, res, next) => {
             }
         },
         (err, activities) => {
-            console.log("Returning "+activities.length+" activities")
+            console.log("Returning ")
+            console.table({activities:activities.length,start:QueryDate.start.getMonth()+"/"+QueryDate.start.getDate(),end:QueryDate.end.getMonth()+"/"+QueryDate.end.getDate()})
             res.send(activities)
         }
     )
