@@ -64,6 +64,9 @@ class newevent extends Component {
                     newTime.setHours(newTime.getHours-12)
                 }
             break
+            default:
+                console.error("changeTime callse without a valid name.")
+            break
         }
         this.setState({[target]:newTime})
         
@@ -121,7 +124,7 @@ class newevent extends Component {
                 <input className="col-10 form-control" type="text" name="Note" value={this.state.Note} onChange={this.valchange}></input>
                 </div>
                 <div className='form-row'>
-                <input type="submit" value="Submit" className="btn btn-primary" disabled={this.validation() || this.state.ActivityName == ""}/>
+                <input type="submit" value="Submit" className="btn btn-primary" disabled={this.validation() || this.state.ActivityName === ""}/>
                 </div>
           </form>
       );

@@ -1,9 +1,6 @@
 import React from 'react';
 import {Pie} from 'react-chartjs'
 
-import {activityget} from "../../api-requests/index.js";
-
-
 export default class timepie extends React.Component{
     constructor(props){
         super();
@@ -80,7 +77,7 @@ export default class timepie extends React.Component{
                     let begDate = new Date(e.beg)
                     let endDate = new Date(e.end)
 
-                    if (e.Activity==ActivityType){
+                    if (e.Activity===ActivityType){
                         return ((endDate-begDate)/(1000*60*60))+a
                     }
                     else{

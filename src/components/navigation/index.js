@@ -1,6 +1,6 @@
 import React from "react";
 import "./navigation.css";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
     Collapse,
     Navbar,
@@ -34,7 +34,7 @@ export default class useractivities extends React.Component{
     return (
     <div>
     <Navbar color="dark"  dark expand="md">
-    <img src={icon}></img>
+    <img src={icon} alt="Logo"></img>
     <NavbarBrand className="text-light" href="/" >Time Logs</NavbarBrand>
     <NavbarToggler onClick={this.toggle} />
     <Collapse isOpen={this.state.isOpen} navbar>
