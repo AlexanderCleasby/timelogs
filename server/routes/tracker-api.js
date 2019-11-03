@@ -32,7 +32,7 @@ router.post('/newactivity', (req, res, next) => {
         }
         else{
             console.log('saved activity!')
-            res.sendStatus(200)
+            res.send(newActivity)
         }
     })
 
