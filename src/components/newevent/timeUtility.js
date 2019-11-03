@@ -15,15 +15,3 @@ export const numoptions = (num,start,padInner)=>{
     }}
     return ops
 }
-export const TimeConvert = (year,month,day,hour,min,AMPM)=>{
-    
-    month=parseInt(month,10)-1
-    hour=parseInt(hour,10)
-    if(hour==12){
-        hour=0
-    }
-    if(AMPM=='PM'){
-        hour=hour+12
-    }
-    return new Date(parseInt(year,10),month,parseInt(day,10),hour,parseInt(min,10))
-}
