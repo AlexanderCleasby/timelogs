@@ -1,6 +1,10 @@
+$dayWidth:200px;
+
+
+
 .Plannercont{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     height:calc(700px * 1.04167 + 40px)
 }
 
@@ -18,7 +22,7 @@
 }
 
 .dayLabel{
-    width:200px;
+    width:100%;
 }
 
 
@@ -38,7 +42,8 @@
 
 
 .daySchedule{
-    width:200px;
+    width:60vw;
+    max-width: 400px;
     list-style-type:none;
     padding:0%;
     height: 700px;
@@ -73,7 +78,8 @@
 .imagineBlock{
     width: 100%;
     height: calc(100%/24);
-    background-color: rgb(0,0,0,0);
+    opacity: 0;
+    
 }
 
 .activityBlock:nth-child(odd){

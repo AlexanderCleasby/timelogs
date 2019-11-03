@@ -1,5 +1,5 @@
 import React from "react";
-import "./planner.css";
+import "./planner.scss";
 import Newevent from "../newevent"
 import { Modal, ModalHeader,  ModalBody, ModalFooter } from "reactstrap"
 
