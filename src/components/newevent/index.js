@@ -4,6 +4,7 @@ import axios from 'axios'
 import TimeSelect from "./timeSelect"
 import { connect } from "react-redux"
 import { numoptions } from './timeUtility'
+import { newEvent } from "../../actions/activitiesActions"
 
 
 class newevent extends Component {
@@ -23,16 +24,14 @@ class newevent extends Component {
         this.GetActivities()    
     }
 
-    Submit = e =>{
+    Submit = e => {
         e.preventDefault();
-        axios.post('/trackerapi/newactivity',{
-        beg:this.state.Start,
-        end:this.state.End,
-        ActivityName:this.state.ActivityName,Note:this.state.Note}).then(
-            (res)=>{
-                this.props.modalClose()
-            }
-        )
+        this.props.newEvent({
+            beg: this.state.Start,
+            end: this.state.End,
+            ActivityName: this.state.ActivityName,
+            Note: this.state.Note
+        }).then(() => this.props.modalClose())
     }
 
     GetActivities = e=>{
@@ -129,4 +128,4 @@ class newevent extends Component {
     }
     }
 
-    export default connect(state=>state)(newevent)    
+    export default connect(state=>state,{newEvent})(newevent)    

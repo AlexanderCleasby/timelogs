@@ -30,6 +30,10 @@ export function importActivities(end, lookback) {
         }))
 }
 
-export function newEvent(beg,end,ActivityName,Note) {
-
+export function newEvent(activity) {
+    return (dispatch) => activityPost(activity)
+        .then((activity)=>dispatch({
+            type:"NEW_ACTIVITY",
+            activity:activity
+        }))
 }
