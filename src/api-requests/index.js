@@ -18,3 +18,11 @@ export function activityPost(event) {
         )
     })
 }
+
+export function activityTypeget(){
+    return new Promise((resolve) => {
+        axios.get('/trackerapi/getactivitytypes').then(
+            (res) => resolve(res.data)
+        )
+    })
+}

@@ -1,4 +1,4 @@
-import { activityget, activityPost } from "../api-requests";
+import { activityget, activityPost, activityTypeget } from "../api-requests";
 import moment from "moment"
 
 export function importActivities(end, lookback) {
@@ -37,3 +37,11 @@ export function newEvent(activity) {
             activity:activity
         }))
 }
+
+export function importTypes(){
+    return (dispatch) => activityTypeget()
+        .then((types)=>dispatch({
+            type:"IMPORT_TYPES",
+            types:types
+        }))
+} 

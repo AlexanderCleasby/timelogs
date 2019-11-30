@@ -1,9 +1,11 @@
-export default (state={activities:[],span:{start:'',end:''}},action)=>{
+export default (state={activities:[],types:[],span:{start:'',end:''}},action)=>{
     switch (action.type){
         case "IMPORT_ACTIVITIES":
-            return {activities:[...state.activities,...action.activities],span:action.span}
+            return {...state,activities:[...state.activities,...action.activities],span:action.span}
         case "NEW_ACTIVITY":
-            return {activities:[...state.activities,action.activity]}
+            return {...state,activities:[...state.activities,action.activity]}
+        case "IMPORT_TYPES":
+            return {...state,types:action.types}
         default:
             return state
     }
