@@ -74,7 +74,7 @@ router.post('/newactivitytype', (req, res, next) => {
         activitytype: req.body.activitytype
     }).save().then((newActivityType) => {
         console.log('saved activity type: ', newActivityType.activitytype)
-        res.sendStatus(200)    
+        res.send(newActivityType)    
     })
     
 })

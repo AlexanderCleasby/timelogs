@@ -2,51 +2,41 @@ import React from "react";
 import "./useractivities.css";
 
 import axios from 'axios'
-
+import { connect } from "react-redux";
+import { importTypes, newType } from '../../actions/activitiesActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 
-export default class useractivities extends React.Component{
+class useractivities extends React.Component{
     constructor(props){
         super()
         this.state={
             NewActivityName:'',
             ActivityTypes:[]
         }
-        this.GetActivities()
+        if(!props.types.length){
+            props.importTypes()
+        }
     }
     Submit = e=>{
-        axios.post('trackerapi/newactivitytype',{
-            activitytype:this.state.NewActivityName
-        }).then((res)=>{
-            this.GetActivities()
-        }    
-        )
+        this.props.newType(this.state.NewActivityName)
         this.setState({NewActivityName:''})
         e.preventDefault();
     }
     NewActivityChange = e=>{
         this.setState({NewActivityName:e.target.value})
     }
-    GetActivities = e=>{
-        axios.get('/trackerapi/getactivitytypes').then(
-            (res)=>{
-                console.log(res)
-                this.setState({ActivityTypes:res.data})
-            }
-        )
-    }
+
     render(){
         console.log('User Activity component loadaed')
         return(
             <div className='ComponentCont'>
                 <h4>Add to your activities!</h4>
                 <ul className="list-group">
-                    
                     {
-                        this.state.ActivityTypes.map((activity,i)=>{
+                        this.props.types.map((activity,i)=>{
                             return <li className="list-group-item" key={i}>{activity.activitytype}</li>
                         })
                     }
@@ -66,3 +56,5 @@ export default class useractivities extends React.Component{
         )
     }
 }
+
+export default connect((state)=>({types:state.types}),{ importTypes, newType })(useractivities)
