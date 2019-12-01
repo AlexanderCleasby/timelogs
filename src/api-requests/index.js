@@ -26,3 +26,11 @@ export function activityTypeget(){
         )
     })
 }
+
+export function activityTypePost(activitytype){
+    return new Promise((resolve)=>{
+        axios.post('trackerapi/newactivitytype',{activitytype}).then(
+            (res)=>resolve(res.data)
+        )
+    })
+}

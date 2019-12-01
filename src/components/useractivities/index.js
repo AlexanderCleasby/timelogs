@@ -3,7 +3,7 @@ import "./useractivities.css";
 
 import axios from 'axios'
 import { connect } from "react-redux";
-import { importTypes } from '../../actions/activitiesActions'
+import { importTypes, newType } from '../../actions/activitiesActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -21,12 +21,7 @@ class useractivities extends React.Component{
         }
     }
     Submit = e=>{
-        axios.post('trackerapi/newactivitytype',{
-            activitytype:this.state.NewActivityName
-        }).then((res)=>{
-            this.GetActivities()
-        }    
-        )
+        this.props.newType(this.state.NewActivityName)
         this.setState({NewActivityName:''})
         e.preventDefault();
     }
@@ -62,4 +57,4 @@ class useractivities extends React.Component{
     }
 }
 
-export default connect((state)=>({types:state.types}),{ importTypes })(useractivities)
+export default connect((state)=>({types:state.types}),{ importTypes, newType })(useractivities)

@@ -6,6 +6,8 @@ export default (state={activities:[],types:[],span:{start:'',end:''}},action)=>{
             return {...state,activities:[...state.activities,action.activity]}
         case "IMPORT_TYPES":
             return {...state,types:action.types}
+        case "NEW_TYPE":
+            return {...state,types:[...state.types,action.activitytype]}
         default:
             return state
     }
