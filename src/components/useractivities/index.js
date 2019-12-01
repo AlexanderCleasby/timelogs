@@ -13,8 +13,7 @@ class useractivities extends React.Component{
     constructor(props){
         super()
         this.state={
-            NewActivityName:'',
-            ActivityTypes:[]
+            NewActivityName:''
         }
         if(!props.types.length){
             props.importTypes()
@@ -37,7 +36,9 @@ class useractivities extends React.Component{
                 <ul className="list-group">
                     {
                         this.props.types.map((activity,i)=>{
-                            return <li className="list-group-item" key={i}>{activity.activitytype}</li>
+                            return <li className="list-group-item" key={i}>
+                                {activity.activitytype}
+                                </li>
                         })
                     }
                 </ul>
