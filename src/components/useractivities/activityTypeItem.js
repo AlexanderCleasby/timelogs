@@ -4,14 +4,17 @@ import { faTrash, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const DeleteControls = ({expanded, id,  deleteIdChange})=>{
     if(expanded){
-        return <>
-            <button className={"btn btn-success btn-sm deleteControl"}>
-                <FontAwesomeIcon icon={faCheck} />
-            </button>
-            <button className={"btn btn-danger btn-sm deleteControl"}>
+        return <div className="deleteControl">
+            <div className="message">
+                Delete this item?
+            </div>
+            <button className={"btn btn-danger btn-sm"}>
                 <FontAwesomeIcon icon={faTimes} />
             </button>
-        </>
+            <button className={"btn btn-success btn-sm"}>
+                <FontAwesomeIcon icon={faCheck} />
+            </button>
+        </div>
     }
     else{
         return <button className={"btn btn-danger btn-sm deleteControl"} onClick={()=>deleteIdChange(id)}>
