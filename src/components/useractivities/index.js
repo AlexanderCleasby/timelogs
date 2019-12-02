@@ -1,5 +1,5 @@
 import React from "react";
-import "./useractivities.css";
+import "./useractivities.scss";
 
 import axios from 'axios'
 import { connect } from "react-redux";
