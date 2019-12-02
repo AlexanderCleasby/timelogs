@@ -8,7 +8,7 @@ const DeleteControls = ({expanded, id,  deleteIdChange})=>{
             <div className="message">
                 Delete this item?
             </div>
-            <button className={"btn btn-danger btn-sm"}>
+            <button className={"btn btn-danger btn-sm"} onClick={()=>deleteIdChange('')}>
                 <FontAwesomeIcon icon={faTimes} />
             </button>
             <button className={"btn btn-success btn-sm"}>
