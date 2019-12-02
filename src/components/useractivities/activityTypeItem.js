@@ -14,8 +14,8 @@ const DeleteControls = ({expanded, id,  deleteIdChange})=>{
         </>
     }
     else{
-        return <button className={"btn btn-danger btn-sm deleteControl"}>
-                <FontAwesomeIcon icon={faTrash} onClick={()=>deleteIdChange(id)} />
+        return <button className={"btn btn-danger btn-sm deleteControl"} onClick={()=>deleteIdChange(id)}>
+                <FontAwesomeIcon icon={faTrash}  />
             </button>
     }
 }
