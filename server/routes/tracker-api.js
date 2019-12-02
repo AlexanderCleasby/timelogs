@@ -78,7 +78,6 @@ router.post('/newactivitytype', (req, res, next) => {
     })
     
 })
-module.exports = router
 
 router.get('/getactivitytypes', (req, res, next) => {
     ActivityType.find({
@@ -88,3 +87,5 @@ router.get('/getactivitytypes', (req, res, next) => {
             res.send(activitytypes)
         })
 })
+
+module.exports = router
