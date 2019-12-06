@@ -88,4 +88,8 @@ router.get('/getactivitytypes', (req, res, next) => {
         })
 })
 
+router.delete('/activity',(req,res)=>{
+    ActivityType.deleteOne({_id:req.body.id,user: req.user._id}).then((result)=>res.send(result))
+})
+
 module.exports = router
