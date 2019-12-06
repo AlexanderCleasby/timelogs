@@ -34,3 +34,12 @@ export function activityTypePost(activitytype){
         )
     })
 }
+
+export function activityTypeDelete(id){
+    return new Promise((resolve)=>{
+        console.log(id)
+        axios.delete('trackerapi/activity',{data:{id}}).then(
+            (res)=>resolve(id)
+        )
+    })
+}

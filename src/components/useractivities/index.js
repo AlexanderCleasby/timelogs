@@ -3,7 +3,7 @@ import "./useractivities.scss";
 
 import axios from 'axios'
 import { connect } from "react-redux";
-import { importTypes, newType } from '../../actions/activitiesActions'
+import { importTypes, newType, deleteType } from '../../actions/activitiesActions'
 import ActivityTypeItem from './activityTypeItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -32,6 +32,8 @@ class useractivities extends React.Component{
     deleteIdChange = (id)=>{
         this.setState({deleteId:id})
     }
+    delete = ()=>this.props.deleteType(this.state.deleteId)
+    //console.log(this.props.types.find((type)=>type._id===this.state.deleteId))
      
     render(){
         return(
@@ -39,7 +41,7 @@ class useractivities extends React.Component{
                 <h4>Add to your activities!</h4>
                 <ul className="list-group">
                     
-                        {this.props.types.map((activity,i)=><ActivityTypeItem key={i} {...activity}  deleteIdChange={this.deleteIdChange} expanded={this.state.deleteId===activity._id} />)}
+                        {this.props.types.map((activity,i)=><ActivityTypeItem key={i} {...activity}  deleteIdChange={this.deleteIdChange} expanded={this.state.deleteId===activity._id} deleteType={this.delete} />)}
                     
                 </ul>
                 <form  className="form" onSubmit={this.Submit}>
@@ -58,4 +60,4 @@ class useractivities extends React.Component{
     }
 }
 
-export default connect((state)=>({types:state.types}),{ importTypes, newType })(useractivities)
+export default connect((state)=>({types:state.types}),{ importTypes, newType, deleteType })(useractivities)

@@ -1,4 +1,4 @@
-import { activityget, activityPost, activityTypeget, activityTypePost } from "../api-requests";
+import { activityget, activityPost, activityTypeget, activityTypePost, activityTypeDelete } from "../api-requests";
 import moment from "moment"
 
 export function importActivities(end, lookback) {
@@ -52,4 +52,13 @@ export function newType(activitytype){
             type:"NEW_TYPE",
             activitytype:activitytype
         }))
+}
+
+export function deleteType(id){
+    return (dispatch) => activityTypeDelete(id)
+        .then((id)=>dispatch({
+            type:"DELETE_TYPE",
+            id:id
+    }))
+    
 }

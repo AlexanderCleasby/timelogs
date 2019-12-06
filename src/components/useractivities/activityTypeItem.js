@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
-const DeleteControls = ({expanded, id,  deleteIdChange})=>{
+const DeleteControls = ({expanded, id,  deleteIdChange, deleteType})=>{
     if(expanded){
         return <div className="deleteControl">
             <div className="message">
@@ -11,7 +11,7 @@ const DeleteControls = ({expanded, id,  deleteIdChange})=>{
             <button className={"btn btn-danger btn-sm"} onClick={()=>deleteIdChange('')}>
                 <FontAwesomeIcon icon={faTimes} />
             </button>
-            <button className={"btn btn-success btn-sm"}>
+            <button className={"btn btn-success btn-sm"} onClick={deleteType}>
                 <FontAwesomeIcon icon={faCheck} />
             </button>
         </div>
@@ -23,10 +23,10 @@ const DeleteControls = ({expanded, id,  deleteIdChange})=>{
     }
 }
 
-const ActivityTypeItem = ({activitytype, _id, expanded,  deleteIdChange})=>(
+const ActivityTypeItem = ({activitytype, _id, expanded,  deleteIdChange, deleteType })=>(
     <div className="list-group-item">
         {activitytype}
-        <DeleteControls expanded={expanded} id={_id}  deleteIdChange={deleteIdChange} />
+        <DeleteControls expanded={expanded} id={_id}  deleteIdChange={deleteIdChange} deleteType={deleteType} />
     </div>)
 
 export default ActivityTypeItem

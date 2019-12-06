@@ -8,6 +8,8 @@ export default (state={activities:[],types:[],span:{start:'',end:''}},action)=>{
             return {...state,types:action.types}
         case "NEW_TYPE":
             return {...state,types:[...state.types,action.activitytype]}
+        case "DELETE_TYPE":
+            return {...state,types:state.types.filter(type=>type._id!==action.id)}
         default:
             return state
     }
