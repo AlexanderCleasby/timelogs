@@ -1,12 +1,10 @@
 import React from "react";
-import "./useractivities.scss";
-
-import axios from 'axios'
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { importTypes, newType, deleteType } from '../../actions/activitiesActions'
 import ActivityTypeItem from './activityTypeItem'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons'
+import "./useractivities.scss";
 
 
 
