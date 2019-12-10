@@ -25,6 +25,10 @@ module.exports = {
                         }
                     ]}
                 )
+            case('/trackerapi/getactivitytypes'):
+                return Promise.resolve({
+                    data:['Exercise','Sleep','Code']
+                })
             
         }
     })  
