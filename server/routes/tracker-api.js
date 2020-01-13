@@ -68,12 +68,11 @@ router.get('/getactivities', (req, res, next) => {
 })
 
 router.post('/newactivitytype', (req, res, next) => {
-    console.log(req.body.activitytype)
     new ActivityType({
         user: req.user._id,
         activitytype: req.body.activitytype
     }).save().then((newActivityType) => {
-        console.log('saved activity type: ', newActivityType.activitytype)
+        console.log(`${req.user.name.first} ${req.user.name.last} saved activity type: ${newActivityType.activitytype}`)
         res.send(newActivityType)    
     })
     
