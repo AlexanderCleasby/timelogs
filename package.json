@@ -31,7 +31,7 @@
     "express": "^4.16.3",
     "moment": "^2.24.0",
     "mongoose": "^5.2.15",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "passport": "^0.4.0",
     "passport-google-oauth20": "github:MarshallOfSound/passport-google-oauth2#patch-1",
     "react": "^16.11.0",
